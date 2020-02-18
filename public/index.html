@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="./js/bundle.js"></script>
+
+
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <h1>Total population: {{totalPopulationAll}}</h1>
+
+<hr>
+    <section>
+      <h1>Select a country to filter by:</h1>
+      <select id="country-by-name" v-model="countryFiltered">
+        <option v-bind:value="country" v-for="(country, index) in countries">{{country.name}}</option>
+      </select>
+
+
+      <div v-if="countryFiltered">
+        <h3>Country: {{countryFiltered.name}}</h3>
+        <h3>Population Size: {{countryFiltered.population}}</h3>
+        <div class="flag-container">
+          <img v-bind:src="countryFiltered.flag" alt="flag" class="flag">
+        </div>
+
+        <div>
+          <h2>Neighbouring Countries:</h2>
+          <h3 v-for="(country, index) in findNeighbours">{{country.name}} Population: {{country.population}} </h3>
+        </div>
+
+
+
+
+      </div>
+
+    <button v-on:click="addToFavorites">
+      Add to favourites
+    </button>
+
+
+    </section>
+
+<hr>
+
+    <section>
+      <h1>Favorite Countries:</h1>
+      <ul>
+        <li v-for="(country, index) in favouriteCountries">{{country.name}}</li>
+      </ul>
+    </section>
+
+
+    <!-- <section>
+      <div class="country-item" v-for="country in countries">
+
+      </div>
+    </section> -->
+
+  </div>
+</body>
+</html>
